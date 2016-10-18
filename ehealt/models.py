@@ -3,18 +3,32 @@ import datetime
 
 # Create your models here.
 class Contact(EmbeddedDocument):
+	CONTACT_TYPES = (
+			('phone', 'Phone'),
+			('email', 'E-Mail'),
+			('fax', 'Fax'),
+			('website', 'Website'),
+			('whatsapp', 'WhatsApp'),
+			('twitter', 'Twitter'),
+			('facebook', 'Facebook'),
+			('instagram', 'Instagram'),
+			('bbm', 'Blackberry Messenger'),
+		)
+
 	content = StringField(max_length=50)
-	types = StringField(max_length=50)
+	types = StringField(max_length=25, choices=CONTACT_TYPES)
 
 class Facility(EmbeddedDocument):
+	FACILITY_TYPES = (
+			('medical', 'Medical'),
+			('general', 'General'),	
+			('restaurant', 'Restaurant'),	
+			('restaurant', 'Restaurant'),	
+		)
 	name = StringField(max_length=50)
 	description = StringField(max_length=250)
-	types = StringField(max_length=50)
+	types = StringField(max_length=25, choices=FACILITY_TYPES)
 
-class Location(EmbeddedDocument):
-	lat = StringField(max_length=50)
-	lon = StringField(max_length=50)
-	
 class Hospital(Document):
 	name = StringField(max_length=120, required=True)
 	types = StringField(max_length=50)
@@ -27,6 +41,6 @@ class Hospital(Document):
 	contact = ListField(EmbeddedDocumentField(Contact))
 	country = StringField(max_length=50)
 	facility = ListField(EmbeddedDocumentField(Facility))
-	location = EmbeddedDocumentField(Location)
+	location = DictField()
 	created_at = DateTimeField(required=True, default=datetime.datetime.now)
 	updated_at = DateTimeField(required=True, default=datetime.datetime.now)
