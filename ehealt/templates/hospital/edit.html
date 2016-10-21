@@ -1,0 +1,76 @@
+{% extends "ehealth/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Edit {{ hospital.name }}</h2>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form" class="form-horizontal" method="POST" action="/health/hospital/edit/{{ hospital.id }}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Nama</label>
+                    <div class="col-md-6">
+                        <input name="name" id="name" type="text" class="form-control" value="{{ hospital.name }}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Tipe</label>
+                    <div class="col-md-6">
+                        <input name="types" id="types" type="text" class="form-control"  value="{{ hospital.types }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Kepemilikan</label>
+                    <div class="col-md-6">
+                        <select name="ownership" id="ownership" type="text" class="form-control">
+                            <option>Umum</option>
+                            <option>Swasta</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Kota</label>
+                    <div class="col-md-6">
+                        <input name="city" id="city" type="text" class="form-control"  value="{{ hospital.city }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Kode Pos</label>
+                    <div class="col-md-6">
+                        <input name="zip_code" id="zip_code" type="text" class="form-control"  value="{{ hospital.zip_code }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Alamat</label>
+                    <div class="col-md-6">
+                        <textarea name="address" id="address" type="text" class="form-control">{{ hospital.address }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Deskripsi</label>
+                    <div class="col-md-6">
+                        <textarea name="description" id="description" type="text" class="form-control" rows="7">{{ hospital.description }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" class="btn btn-primary" value="Save" />
+                        <a class="btn btn-danger" href="#" >Batal</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

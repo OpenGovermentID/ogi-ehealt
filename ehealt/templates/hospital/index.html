@@ -1,0 +1,55 @@
+{% extends "ehealth/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Daftar Rumah Sakit</h2>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hovered table-striped">
+            	<thead>
+            		<tr>
+            			<th>No.</th>
+            			<th>Nama</th>
+            			<th>Info</th>
+            			<th>Opsi</th>
+            		</tr>
+            	</thead>
+            	<tbody>
+                        {% if list_hospital|length > 0 %}
+                              {% for hospital in list_hospital %}
+                  		<tr>
+                  			<td>{{ forloop.counter }}</td>
+                  			<td>{{ hospital.name }}</td>
+                  			<td>
+                  				<p>Alamat: {{ hospital.address }}</p>
+                  				<p>Kota: {{ hospital.city }}</p>
+                  				<p>Kepemilikan: {{ hospital.ownership }}</p>
+                  			</td>
+                  			<td>
+                                          <a href="/health/hospital/{{ hospital.id }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                                          <a href="/health/hospital/delete/{{ hospital.id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                  		</tr>
+                              {% endfor %}
+                        {% else %}
+                        <tr>
+                              <td colspan="4" style="text-align:center; padding: 30px;">Tidak ada data ...</td>
+                        </tr>
+                        {% endif %}
+            	</tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

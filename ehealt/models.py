@@ -23,7 +23,7 @@ class Facility(EmbeddedDocument):
 			('medical', 'Medical'),
 			('general', 'General'),	
 			('restaurant', 'Restaurant'),	
-			('restaurant', 'Restaurant'),	
+			('sport', 'Sport'),	
 		)
 	name = StringField(max_length=50)
 	description = StringField(max_length=250)
@@ -34,13 +34,16 @@ class Hospital(Document):
 	types = StringField(max_length=50)
 	ownership = StringField(max_length=50)
 	description = StringField(max_length=250)
+	
 	address = StringField(max_length=120)
 	city = StringField(max_length=30)
 	province = StringField(max_length=30)
-	zip_code = StringField(max_length=30)
-	contact = ListField(EmbeddedDocumentField(Contact))
 	country = StringField(max_length=50)
+	zip_code = StringField(max_length=30)
+	
+	contact = ListField(EmbeddedDocumentField(Contact))
 	facility = ListField(EmbeddedDocumentField(Facility))
 	location = DictField()
+	
 	created_at = DateTimeField(required=True, default=datetime.datetime.now)
 	updated_at = DateTimeField(required=True, default=datetime.datetime.now)

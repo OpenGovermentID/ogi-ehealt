@@ -1,0 +1,57 @@
+{% extends "ehealth/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>{{ hospital.name }}</h2>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Tipe: {{ hospital.types}}, Kepemilikan: {{ hospital.ownership }}</p>
+            <p>Alamat: {{ hospital.address }}, {{ hospital.city }}, {{ hospital.province }}, {{ hospital.country }}, {{ hospital.zip_code }} </p>
+            <p>{{ hospital.description }}</p>
+
+            <br/> 
+            <a href="/health/hospital/edit/{{ hospital.id }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+            <a href="/health/hospital/delete/{{ hospital.id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+            
+            <hr/>
+            <br/>
+
+            <ul class="nav nav-tabs" id="myTab">
+              <li class="active"><a href="#contact">Kontak</a></li>
+              <li><a href="#facility">Fasilitas</a></li>
+              <li><a href="#location">Lokasi</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="contact"><p>Daftar kontak...</p></div>
+              <div class="tab-pane" id="facility"><p>Daftar fasilitas...</p></div>
+              <div class="tab-pane" id="location"><p>Lokasi...</p></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block inline_js %}
+
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+
+</script>
+
+{% endblock %}
